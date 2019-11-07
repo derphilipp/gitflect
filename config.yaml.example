@@ -1,0 +1,14 @@
+---
+
+data_path: /tmp/git/
+default_url: "ssh://git@git.wherever.you.want.it/"
+ssh_key: "~/.ssd/id_rsa"
+parallel: no
+
+projects:
+    git2cl.git:
+        local_name: repo.or.cz/git2cl
+        origin_url: "https://repo.or.cz/r/git2cl.git"
+
+github_projects:
+    - google/googletest
