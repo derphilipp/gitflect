@@ -27,8 +27,6 @@ var (
 	// mazeFile   = flag.String("maze-file", "maze01.txt", "path to a custom maze file")
 )
 
-type gitStatus string
-
 const (
 	statusDone        = "✅ project updated"
 	statusDoneNothing = "✅ already up to date"
@@ -172,20 +170,9 @@ func push(repo *git.Repository, reponame string) error {
 	addOutputLine(fmt.Sprintf("Error occured: [%v](fg:red)", err), reponame)
 	return err
 }
-func remove(s []string, r string) []string {
-	for i, v := range s {
-		if v == r {
-			return append(s[:i], s[i+1:]...)
-		}
-	}
-	return s
-}
-
-var activeRepositories []string
-var completedRepositories []string
 
 func processProject(url, localname string) error {
-	activeRepositories = append(activeRepositories, localname)
+
 	addOutputLine("Processing Project", localname)
 
 	targetURL := cfg.DefaultURL + localname
@@ -355,14 +342,4 @@ func drawFunction() {
 		textList.ScrollBottom()
 	}
 	ui.Render(grid)
-}
-
-func contains(slice []string, item string) bool {
-	set := make(map[string]struct{}, len(slice))
-	for _, s := range slice {
-		set[s] = struct{}{}
-	}
-
-	_, ok := set[item]
-	return ok
 }
